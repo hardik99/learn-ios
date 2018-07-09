@@ -15,3 +15,4 @@
 * https://github.com/yuaming/swift-vendingmachineapp/tree/yuaming[Vending Machine]
 * https://github.com/yuaming/ios-solitare[Solitare]
 * https://github.com/yuaming/swift-addressbookapp/tree/yuaming[AddressBook]
+* https://github.com/yuaming/swift-storeapp/tree/yuaming[Store]
