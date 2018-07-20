@@ -11,8 +11,7 @@
 
 ===== Apps
 
-* https://github.com/yuaming/swift-photoFrame/tree/yuaming[Photo Frame]
-* https://github.com/yuaming/swift-vendingmachineapp/tree/yuaming[Vending Machine]
-* https://github.com/yuaming/ios-solitare[Solitare]
-* https://github.com/yuaming/swift-addressbookapp/tree/yuaming[AddressBook]
-* https://github.com/yuaming/swift-storeapp/tree/yuaming[Store]
+* https://github.com/yuaming/ios-photoFrame/tree/yuaming[Photo Frame]
+* https://github.com/yuaming/ios-vendingmachineapp/tree/yuaming[Vending Machine]
+* https://github.com/yuaming/ios-addressbookapp/tree/yuaming[AddressBook]
+* https://github.com/yuaming/ios-storeapp/tree/yuaming[Store]
