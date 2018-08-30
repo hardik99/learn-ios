@@ -8,3 +8,4 @@
 - [Mirror API](https://developer.apple.com/documentation/swift/mirror)
 - [Reflection in Swift](https://medium.com/@swiftthesorrow/reflection-in-swift-958824116b07)
 - [Swift. Codable Decoding](https://soulpark.wordpress.com/2012/09/03/objective_c_introspection/)
+- [Dynamic Features in Swift](https://www.raywenderlich.com/5743-dynamic-features-in-swift)
