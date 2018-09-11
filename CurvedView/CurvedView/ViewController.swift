@@ -22,7 +22,8 @@ class TopCurvedView: UIView {
   override func draw(_ rect: CGRect) {
     let color = UIColor.red
     let y: CGFloat = 30
-    let bezier = UIBezierPath(rect: CGRect(x: 0, y: 0, width: rect.width, height: y))
+//    let bezier = UIBezierPath(rect: CGRect(x: 0, y: 0, width: rect.width, height: y))
+    let bezier = UIBezierPath()
     bezier.move(to: CGPoint(x: 0, y: y))
     bezier.addQuadCurve(to: CGPoint(x: rect.width, y: y), controlPoint: CGPoint(x: rect.width / 2, y: rect.height / 3))
     bezier.close()
@@ -47,7 +48,8 @@ class BottomCurvedView: UIView {
   override func draw(_ rect: CGRect) {
     let color = UIColor.orange
     let y: CGFloat = 30
-    let bezier = UIBezierPath(rect: CGRect(x: 0, y: 0, width: rect.width, height: y))
+//    let bezier = UIBezierPath(rect: CGRect(x: 0, y: 0, width: rect.width, height: y))
+    let bezier = UIBezierPath()
     bezier.move(to: CGPoint(x: 0, y: y))
     bezier.addQuadCurve(to: CGPoint(x: rect.width, y: y), controlPoint: CGPoint(x: rect.width / 2, y: rect.height / 3))
     bezier.close()
