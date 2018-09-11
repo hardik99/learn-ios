@@ -1,0 +1,4 @@
+= Currying
+
+===== 내용 정리 및 참고 
+* https://github.com/yuaming/TIL/blob/master/swift/swift-currying.adoc[Swift Currying]
