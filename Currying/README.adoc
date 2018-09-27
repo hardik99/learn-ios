@@ -1,4 +1,95 @@
-= Currying
+= Swift Currying
 
-===== 내용 정리 및 참고 
-* https://github.com/yuaming/TIL/blob/master/swift/swift-currying.adoc[Swift Currying]
+===== 설명
+* 함수를 만드는 함수
+* 클래스의 객체를 인자로 받아 멤버함수를 리턴하는 클래스 함수
+** 클래스 인스턴스를 인자로 받음
+** 리턴 타입은 함수 
+
+===== 구현 
+
+[source, swift]
+----
+// Currying
+// - 함수를 만드는 함수
+// - func 함수를 만드는 함수(인자: 인자 타입) -> ((인자타입) -> 결과타입)
+
+// 왜 Currying 이라고 부르나?
+// - Haskell Brooks Curry 만듦
+
+
+// 예제 1
+// - 두 Int 값을 받아서 덧셈을 하고 결과 값을 리턴해주는 함수
+func sum(_ number1: Int, _ number2: Int) -> Int {
+  return number1 + number2
+}
+
+print(sum(1, 2))
+
+func curriedSum(_ number1: Int) -> (Int) -> Int {
+  return { number2 in
+    return number1 + number2
+  }
+}
+
+let sum2 = curriedSum(1)
+print(sum2(2))
+print(curriedSum(1)(2))
+
+
+// 예제 2
+// - 문자열을 쪼개서 배열을 리턴하는 함수
+func devideString(_ separator: String) -> (String) -> [String] {
+  return { string in
+    return string.components(separatedBy: separator)
+  }
+}
+
+print(devideString("/")("aaa/bbb/ccc/ddd"))
+print(devideString("*")("aaa*bbb*ccc*ddd"))
+
+
+// 에제 3: 커링 이용
+// - 어떤 문자열 안에 어떤 문자열이 포함되어 있는지 체크함
+// - 정규식 활용
+// - Bool 반환하는 함수
+func testRegex(pattern: String) -> (String) -> Bool {
+  let expression: NSRegularExpression? = try? NSRegularExpression(pattern: pattern,
+                                                                  options: .caseInsensitive)
+  return { (input: String) -> Bool in
+    guard let expression = expression else { return false }
+    let inputRange = NSRange(location: 0, length: input.count)
+    let matches = expression.matches(in: input, options: [], range: inputRange)
+    return matches.count > 0
+  }
+}
+
+print(testRegex(pattern: "main")("int main()"))
+
+
+// 예제 3: 클래스 이용
+class Regex {
+  var expression: NSRegularExpression?
+  
+  init(_ pattern: String) {
+    self.expression = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+  }
+  
+  func test(_ input: String) -> Bool {
+    guard let expression = expression else { return false }
+    let inputRange = NSRange(location: 0, length: input.count)
+    let matches = expression.matches(in: input, options: [], range: inputRange)
+    return matches.count > 0
+  }
+}
+
+let regex = Regex("main")
+print(regex.test("int main()"))
+print(Regex("main").test("int main()"))
+
+let hasMainIn = Regex("main").test
+print(hasMainIn("int main()"))
+----
+
+===== 참고
+* https://academy.realm.io/kr/posts/currying-on-the-swift-functions/[Swift 함수 커링 사용하기]
