@@ -93,5 +93,63 @@ let hasMainIn = Regex("main").test
 print(hasMainIn("int main()"))
 ----
 
+===== Tip
+* `func f1(_ a:Any, _ b: Any, _ c: Any) -> Any` 커링하면 `func f2(_ a:Any) -> (Any) -> (Any) -> Any`
+* 커링은 파라미터를 하나씩만 갖는 함수들로 쪼개는 것
+* f1(1, 2, 3)과 f2(1)(2)(3) 결과가 같아야 함
+* 커링은 함수들의 합성을 용이하게도 해주지만, *하나의 함수를 다양하게 사용할 수 있도록 해주기도 함*
+
+[source, swift]
+----
+func request(_ baseUrl: String,
+             _ method: HttpMethod,
+             _ path: String,
+             _ parameters: [String:Any]?) -> HttpRequest
+
+func request(_ baseUrl: String) -> (HttpMethod) -> (String) -> ([String:Any]?) -> HttpRequest
+
+let oldApiRequest = request("legacy_api_server")
+let newApiRequest = request("new_api_server")
+
+let oldRequestGet = oldApiRequest(.get)
+let oldRequestPost = oldApiRequest(.post)
+
+//레거시 서버에 get 요청하기
+let httpRequest = oldRequestGet("/list")(nil)
+//신규 서버에 post 요청하기
+let httpRequest2 = newRequestPost("/post")(["param":"data"])
+
+/*
+  - 하나의 함수를 가지고 여러 용도의 함수를 만드는 것과 같은 효과낼 수 있음
+  - 커링을 고려해서 함수를 만들게 된다면 어떤 순서로 파라미터를 배치하는 것이 활용성에 좋을지를 고민하는 단계 들어섬
+  - 잘 설계된 소스들을 보면서 함수의 파라미터 순서까지 살펴보는 관점을 가질 수 있게 될 것
+*/
+----
+
+* 매번 커링된 함수를 새로 만들 필요 없이 *커링시켜주는 함수를 따로 만들어 사용하면 됨*
+
+[source, swift]
+----
+func currying<A,B,C,D,E>(_ f: @escaping (A, B, C, D) -> E) -> (A) -> (B) -> (C) -> (D) -> E {
+    return { a in 
+        return { b in 
+            return { c in 
+                return { d in 
+                    return f(a, b, c, d)
+                }
+            }
+        }
+    }
+}
+
+func request(_ baseUrl: String,
+             _ method: HttpMethod,
+             _ path: String,
+             _ parameters: [String:Any]?) -> HttpRequest
+
+let oldApiRequest = currying(request)("legacy_api_server")
+----
+
 ===== 참고
 * https://academy.realm.io/kr/posts/currying-on-the-swift-functions/[Swift 함수 커링 사용하기]
+* https://programmers.co.kr/learn/questions/3750[커링(Curring)을 제대로 사용한건지 모르겠습니다.]
