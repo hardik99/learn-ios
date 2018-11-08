@@ -1,0 +1,32 @@
+= Swift로 함수형 프로그래밍 시작하기 정리
+
+=== FP가 재조명 받는 이유
+
+===== FP 아니더라도 동시성 문제를 해결할 수 있음
+* 세마포어를 통해 자원 접근을 동시하는 것을 통제함
+* OOP 대표 언어 중 Java는 Synchronized 키워드를 통해 데이터 동시 접근하는 것을 통제함
+* 데이터를 조작하지 않는 것을 통해 쉽게 해결할 수 있음
+* FP가 이러한 특성과 잘 부합함
+
+=== FP에 대한 오해
+
+===== FP 특징 ?
+* Immutable Data, Higher Order Function, Map, Currying 등 프로그래밍 기법. FP 특징이 아님
+* Side Effect 발생하지 않음 => FP 특징
+* 프로그래밍 기법을 FP 특징으로 오해하면 안됨
+
+===== FP가 OOP를 대체할 수 있나 ?
+* OOP는 낡은 것이 아님. 각각 사용하는 용도가 있음. 각 패러다임을 이해하고 내가 직면한 문제에 대해 잘 사용하면 됨
+
+===== FP는 FP 전용 언어로만 가능한가 ?
+* FP 전용 언어가 다루기 쉬울 뿐, 다른 언어로 사용하지 못하는 것은 아님
+* FP는 기술이 아니라 패러다임
+
+=== FP 프로그래밍 기법
+
+===== 키워드
+* Pure Function
+* Higher-Order Function
+* Composition
+* Currying
+* Async Result
