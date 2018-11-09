@@ -18,4 +18,6 @@ import Foundation
 //    print("4: \(number)")
 //}
 
-fizzbuzzMain()
+//fizzbuzzMain()
+
+lowHighMain()
